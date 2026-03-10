@@ -26,14 +26,10 @@ bool	check_coders_burnout(t_data *data)
 		time = get_time_in_ms();
 		elapsed = get_elapsed_time(time,
 				&coder->last_compile_start, &coder->coder_mutex);
-		// pthread_mutex_lock(&coder->coder_mutex);
-		// pthread_mutex_lock(&data->data_mutex);
 		if (get_int(&coder->compilation_count, &coder->coder_mutex)
 			!= data->number_of_compiles_required
 			&& elapsed >= data->time_to_burnout)
 			return (true);
-			// pthread_mutex_unlock(&data->data_mutex);
-			// pthread_mutex_unlock(&coder->coder_mutex);
 		i++;
 	}
 	return (false);
