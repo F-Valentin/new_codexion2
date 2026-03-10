@@ -55,8 +55,14 @@ static bool	coder_mutex_and_cond_init(t_coder *coder)
 {
 	if (pthread_mutex_init(&coder->coder_mutex, NULL) != 0)
 		return (false);
+	if (pthread_mutex_init(&coder->coder_waiting, NULL) != 0)
+	{
+		pthread_mutex_destroy(&coder->coder_waiting);
+		return (false);
+	}
 	if (pthread_cond_init(&coder->coder_cond, NULL) != 0)
 	{
+		pthread_mutex_destroy(&coder->coder_waiting);
 		pthread_mutex_destroy(&coder->coder_mutex);
 		return (false);
 	}

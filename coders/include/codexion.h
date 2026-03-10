@@ -44,6 +44,7 @@ typedef struct s_coder
 	t_dongle		*second_dongle;
 	t_data			*data;
 	pthread_mutex_t	coder_mutex;
+	pthread_mutex_t	coder_waiting;
 	pthread_cond_t	coder_cond;
 }	t_coder;
 

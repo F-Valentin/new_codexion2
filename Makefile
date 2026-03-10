@@ -1,7 +1,7 @@
 SRC=coders/src/codexion.c coders/src/ft_atol.c\
 	coders/src/dongle_init.c coders/src/coder_init.c coders/src/parsing.c\
 	coders/src/init.c coders/src/time.c coders/src/codexion.c\
-	coders/src/free_data.c coders/src/heap.c coders/src/check_simulation.c
+	coders/src/free_data.c coders/src/heap.c coders/src/check_simulation.c\
 	coders/src/getters.c
 OBJ=$(SRC:.c=.o)
 CFLAGS=-g3 -Wall -Wextra -Werror -pthread
