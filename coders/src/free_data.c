@@ -6,7 +6,7 @@
 /*   By: vafechte <vafechte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 16:49:35 by vafechte          #+#    #+#             */
-/*   Updated: 2026/03/10 15:04:40 by vafechte         ###   ########.fr       */
+/*   Updated: 2026/03/10 16:23:15 by vafechte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,16 @@ void	free_coder(t_coder *coders, int size)
 		i++;
 	}
 	free(coders);
+}
+
+void	free_data_mutex_and_cond(t_data *data)
+{
+	if (pthread_mutex_destroy(&data->data_mutex) != 0)
+		fprintf(stderr, "Failed to destroy the data_mutex.\n");
+	if (pthread_mutex_destroy(&data->end_mutex) != 0)
+		fprintf(stderr, "Failed to destroy the end_mutex.\n");
+	if (pthread_mutex_destroy(&data->log_mutex) != 0)
+		fprintf(stderr, "Failed to destroy the log_mutex.\n");
 }
 
 void	free_monitor(t_monitor *monitor)

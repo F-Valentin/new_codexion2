@@ -6,7 +6,7 @@
 /*   By: vafechte <vafechte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 16:49:46 by vafechte          #+#    #+#             */
-/*   Updated: 2026/03/10 15:27:21 by vafechte         ###   ########.fr       */
+/*   Updated: 2026/03/10 16:23:05 by vafechte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ static bool	data_init(t_data *data)
 	return (true);
 }
 
+// pas oublier de free les mutex de data init
 bool	init(t_data *data)
 {
 	if (!data)
@@ -60,19 +61,19 @@ bool	init(t_data *data)
 	if (!data_init(data))
 		return (false);
 	if (!monitor_init(&data->monitor))
-		return (false);
+		return (free_data_mutex_and_cond(data), false);
 	if (!dongle_init(data))
 	{
-		free_monitor(&data->monitor);
+		free_data_mutex_and_cond(data);
 		fprintf(stderr, "Failed to initialize Dongles\n");
-		return (false);
+		return (free_monitor(&data->monitor), false);
 	}
 	if (!coder_init(data))
 	{
-		free_monitor(&data->monitor);
+		free_data_mutex_and_cond(data);
 		free_dongle(data->dongles, data->number_of_coders);
 		fprintf(stderr, "Failed to initialize Coders\n");
-		return (false);
+		return (free_monitor(&data->monitor), false);
 	}
 	return (true);
 }

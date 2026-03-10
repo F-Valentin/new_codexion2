@@ -6,7 +6,7 @@
 /*   By: vafechte <vafechte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 10:30:04 by vafechte          #+#    #+#             */
-/*   Updated: 2026/03/10 15:30:42 by vafechte         ###   ########.fr       */
+/*   Updated: 2026/03/10 16:10:46 by vafechte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,13 @@ bool	dongle_init(t_data *data)
 		dongle->dongle_id = i;
 		dongle->available_at = 0;
 		dongle->waiting_queue.nodes = malloc(
-				sizeof(t_heap_node) * data->number_of_coders);
-		if (!dongle->waiting_queue.nodes
-			|| !dongle_mutex_and_cond_init(dongle))
+				sizeof(t_heap_node) * 2);
+		if (!dongle->waiting_queue.nodes)
+			return (free_dongle(data->dongles, i), false);
+		if (!dongle_mutex_and_cond_init(dongle))
 			return (free_dongle(data->dongles, i), false);
 		dongle->waiting_queue.size = 0;
-		dongle->waiting_queue.capacity = data->number_of_coders;
+		dongle->waiting_queue.capacity = 2;
 		i++;
 	}
 	return (true);

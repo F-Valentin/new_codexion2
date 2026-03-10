@@ -6,7 +6,7 @@
 /*   By: vafechte <vafechte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 10:28:39 by vafechte          #+#    #+#             */
-/*   Updated: 2026/03/10 15:32:13 by vafechte         ###   ########.fr       */
+/*   Updated: 2026/03/10 16:12:40 by vafechte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,6 @@ bool	coder_init(t_data *data)
 	int		i;
 	t_coder	*coder;
 
-	if (!data->dongles)
-		return (false);
 	data->coders = malloc(sizeof(t_coder) * data->number_of_coders);
 	if (!data->coders)
 		return (false);

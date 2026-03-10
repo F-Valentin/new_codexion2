@@ -6,7 +6,7 @@
 /*   By: vafechte <vafechte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 11:19:57 by vafechte          #+#    #+#             */
-/*   Updated: 2026/03/10 15:04:46 by vafechte         ###   ########.fr       */
+/*   Updated: 2026/03/10 16:20:55 by vafechte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,6 @@
 void	free_dongle(t_dongle *dongles, int size);
 void	free_coder(t_coder *coders, int size);
 void	free_monitor(t_monitor *monitor);
+void	free_data_mutex_and_cond(t_data *data);
 void	cleanup_data(t_data *data);
 #endif
