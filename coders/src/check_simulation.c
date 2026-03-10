@@ -30,7 +30,7 @@ bool	check_coders_burnout(t_data *data)
 		// pthread_mutex_lock(&data->data_mutex);
 		if (get_int(&coder->compilation_count, &coder->coder_mutex)
 			!= data->number_of_compiles_required
-			&& elapsed >= &data->time_to_burnout)
+			&& elapsed >= data->time_to_burnout)
 			return (true);
 			// pthread_mutex_unlock(&data->data_mutex);
 			// pthread_mutex_unlock(&coder->coder_mutex);
