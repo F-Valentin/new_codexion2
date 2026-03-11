@@ -6,11 +6,12 @@
 /*   By: vafechte <vafechte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 15:23:34 by vafechte          #+#    #+#             */
-/*   Updated: 2026/03/11 16:46:03 by vafechte         ###   ########.fr       */
+/*   Updated: 2026/03/11 17:35:27 by vafechte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
+#include "get_time.h"
 #include <stdio.h>
 #include "codexion.h"
 #include "check_simulation.h"
@@ -20,6 +21,16 @@
 // peut etre deadlock trop de verif
 bool	compiling(t_coder *coder)
 {
+	pthread_mutex_lock(&coder->coder_mutex);
+	if (coder->compilation_count >= coder->data->number_of_compiles_required)
+	{
+		pthread_mutex_unlock(&coder->coder_mutex);
+		return (false);
+	}
+	pthread_mutex_unlock(&coder->coder_mutex);
+	pthread_mutex_lock(&coder->coder_mutex);
+	coder->last_compile_start = get_time_in_ms();
+	pthread_mutex_unlock(&coder->coder_mutex);
 	if (is_simulation_finished(coder->data))
 		return (false);
 	log_status(coder, "is compiling");

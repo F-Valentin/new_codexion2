@@ -6,7 +6,7 @@
 /*   By: vafechte <vafechte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 11:11:28 by vafechte          #+#    #+#             */
-/*   Updated: 2026/03/11 16:54:46 by vafechte         ###   ########.fr       */
+/*   Updated: 2026/03/11 18:18:44 by vafechte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static bool	start_simulation(t_data *data)
 	if (pthread_create(&data->monitor.monitor_id, NULL, monitor, data))
 	{
 		fprintf(stderr, "Failed to create monitor thread.\n");
-		return (NULL);
+		return (false);
 	}
 	i = 0;
 	while (i < data->number_of_coders)
@@ -35,18 +35,15 @@ static bool	start_simulation(t_data *data)
 		if (pthread_create(&coder->coder_id, NULL, coder_simulation, coder))
 		{
 			fprintf(stderr, "Failed to create coder %d thread.\n", i);
-			return (NULL);
+			return (false);
 		}
 		i++;
 	}
 	i = 0;
 	while (i < data->number_of_coders)
-	{
-		pthread_join(data->coders[i].coder_id, NULL);
-		i++;
-	}
+		pthread_join(data->coders[i++].coder_id, NULL);
 	pthread_join(data->monitor.monitor_id, NULL);
-	return (NULL);
+	return (true);
 }
 
 int	main(int ac, char **av)
@@ -65,6 +62,7 @@ int	main(int ac, char **av)
 		fprintf(stderr, "Init data failed.\n");
 		return (-1);
 	}
+	printf("nb coder: %d\n", data.number_of_coders);
 	if (data.number_of_coders == 1)
 		one_coder(&data);
 	else

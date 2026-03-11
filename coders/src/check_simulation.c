@@ -6,10 +6,11 @@
 /*   By: vafechte <vafechte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 10:59:28 by vafechte          #+#    #+#             */
-/*   Updated: 2026/03/11 15:41:58 by vafechte         ###   ########.fr       */
+/*   Updated: 2026/03/11 18:24:28 by vafechte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "check_simulation.h"
 #include "getters.h"
 #include "get_time.h"
@@ -68,11 +69,14 @@ bool	check_all_coders_finished(t_data *data)
 		pthread_mutex_unlock(&coder->coder_mutex);
 		i++;
 	}
-	if (count >= data->number_of_compiles_required)
+	if (count >= data->number_of_coders)
 	{
 		pthread_mutex_lock(&data->end_mutex);
 		data->end_simulation = true;
 		pthread_mutex_unlock(&data->end_mutex);
+		pthread_mutex_lock(&data->log_mutex);
+		printf(GREEN"finished\n"RST);
+		pthread_mutex_unlock(&data->log_mutex);
 		return (true);
 	}
 	return (false);
