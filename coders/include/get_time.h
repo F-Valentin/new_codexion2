@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_simulation.h                                 :+:      :+:    :+:   */
+/*   get_time.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vafechte <vafechte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/11 10:59:33 by vafechte          #+#    #+#             */
-/*   Updated: 2026/03/11 13:21:15 by vafechte         ###   ########.fr       */
+/*   Created: 2026/03/06 16:50:08 by vafechte          #+#    #+#             */
+/*   Updated: 2026/03/11 13:29:32 by vafechte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECK_SIMULATION_H
-# define CHECK_SIMULATION_H
+#ifndef GET_TIME_H
+# define GET_TIME_H
 
-# include <stdbool.h>
-# include "codexion.h"
-
-bool	is_simulation_finished(t_data *data);
-bool	check_coders_burnout(t_data *data);
-bool	check_all_coders_finished(t_data *data);
+long		get_time_in_ms(void);
+long		get_time_in_us(void);
 #endif

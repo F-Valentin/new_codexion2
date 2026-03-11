@@ -6,7 +6,7 @@
 /*   By: vafechte <vafechte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 16:49:46 by vafechte          #+#    #+#             */
-/*   Updated: 2026/03/11 12:48:46 by vafechte         ###   ########.fr       */
+/*   Updated: 2026/03/11 14:14:04 by vafechte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ static bool	data_init(t_data *data)
 		pthread_mutex_destroy(&data->end_mutex);
 		return (false);
 	}
-	data->start_simulation = false;
 	data->end_simulation = false;
 	data->start_time = 0;
 	return (true);

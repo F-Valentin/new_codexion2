@@ -1,18 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   time.h                                             :+:      :+:    :+:   */
+/*   monitor.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vafechte <vafechte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/06 16:50:08 by vafechte          #+#    #+#             */
-/*   Updated: 2026/03/10 10:16:19 by vafechte         ###   ########.fr       */
+/*   Created: 2026/03/11 14:06:24 by vafechte          #+#    #+#             */
+/*   Updated: 2026/03/11 14:06:25 by vafechte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TIME_H
-# define TIME_H
+#ifndef MONITOR_H
+# define MONITOR_H
 
-long		get_time_in_ms(void);
-long		get_time_in_us(void);
+void	*monitor(void *arg);
 #endif

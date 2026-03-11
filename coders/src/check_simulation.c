@@ -6,13 +6,13 @@
 /*   By: vafechte <vafechte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 10:59:28 by vafechte          #+#    #+#             */
-/*   Updated: 2026/03/11 13:17:20 by vafechte         ###   ########.fr       */
+/*   Updated: 2026/03/11 13:33:04 by vafechte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "check_simulation.h"
 #include "getters.h"
-#include "time.h"
+#include "get_time.h"
 
 bool	check_coders_burnout(t_data *data)
 {
@@ -30,7 +30,10 @@ bool	check_coders_burnout(t_data *data)
 		if (get_int(&coder->compilation_count, &coder->coder_mutex)
 			!= data->number_of_compiles_required
 			&& elapsed >= data->time_to_burnout)
+		{
+			// print burnout
 			return (true);
+		}
 		i++;
 	}
 	return (false);

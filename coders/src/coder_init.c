@@ -6,7 +6,7 @@
 /*   By: vafechte <vafechte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 10:28:39 by vafechte          #+#    #+#             */
-/*   Updated: 2026/03/10 16:12:40 by vafechte         ###   ########.fr       */
+/*   Updated: 2026/03/11 13:29:51 by vafechte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include "coder_init.h"
 #include "free_data.h"
-#include "time.h"
+#include "get_time.h"
 
 static void	assign_dongles(t_coder *coder, t_dongle *dongles)
 {

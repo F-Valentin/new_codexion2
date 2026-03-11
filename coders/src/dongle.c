@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_simulation.h                                 :+:      :+:    :+:   */
+/*   dongle.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vafechte <vafechte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/11 10:59:33 by vafechte          #+#    #+#             */
-/*   Updated: 2026/03/11 13:21:15 by vafechte         ###   ########.fr       */
+/*   Created: 2026/03/11 14:07:29 by vafechte          #+#    #+#             */
+/*   Updated: 2026/03/11 14:08:36 by vafechte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECK_SIMULATION_H
-# define CHECK_SIMULATION_H
+#include "dongle.h"
 
-# include <stdbool.h>
-# include "codexion.h"
+bool	take_dongle()
+{
 
-bool	is_simulation_finished(t_data *data);
-bool	check_coders_burnout(t_data *data);
-bool	check_all_coders_finished(t_data *data);
-#endif
+}

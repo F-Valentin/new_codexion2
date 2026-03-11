@@ -6,7 +6,7 @@
 /*   By: vafechte <vafechte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 16:50:17 by vafechte          #+#    #+#             */
-/*   Updated: 2026/03/10 11:02:36 by vafechte         ###   ########.fr       */
+/*   Updated: 2026/03/11 14:13:58 by vafechte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ typedef struct s_monitor
 
 typedef struct s_data
 {
-	bool			start_simulation;
 	bool			end_simulation;
 	int				number_of_coders;
 	int				number_of_compiles_required;

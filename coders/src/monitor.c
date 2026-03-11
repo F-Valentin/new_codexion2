@@ -6,25 +6,34 @@
 /*   By: vafechte <vafechte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 10:59:39 by vafechte          #+#    #+#             */
-/*   Updated: 2026/03/11 13:18:59 by vafechte         ###   ########.fr       */
+/*   Updated: 2026/03/11 14:07:19 by vafechte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
+#include <unistd.h>
+#include "check_simulation.h"
 
 void	*monitor(void *arg)
 {
+	t_data	*data;
+
+	data = (t_data *)arg;
 	while (true)
 	{
-		/*
-			if (is_simulation_finished())
-				wake up all coder
-				break
-			if (check_all_coders_finished())
-				break ;
-			if (check_coders_burnout)
-				set_bool(&data->end_simulatoin, true, mutex);
-			usleep(1000)
-		*/
+		if (is_simulation_finished(data))
+		{
+			// wake up all coder
+			break ;
+		}
+		if (check_all_coders_finished(data))
+			break ;
+		if (check_coders_burnout(data))
+		{
+			pthread_mutex_lock(&data->end_mutex);
+			data->end_simulation = true;
+			pthread_mutex_unlock(&data->end_mutex);
+		}
+		usleep(500);
 	}
+	return (NULL);
 }
