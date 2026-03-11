@@ -1,9 +1,46 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include "codexion.h"
+#include "check_simulation.h"
+#include "utils.h"
+#include "unistd.h"
 
-bool	compiling(t_data *data)
+// peut etre deadlock trop de verif
+bool	compiling(t_coder *coder)
 {
-	pthread_mutex_lock(&data->log_mutex);
-	pthread_mutex_unlock(&data->log_mutex);
+	if (is_simulation_finished(coder->data))
+		return (false);
+	log_status(coder, "is compiling");
+	if (is_simulation_finished(coder->data))
+		return (false);
+	usleep(coder->data->time_to_compile * 1000);
+	if (is_simulation_finished(coder->data))
+		return (false);
+	return (true);
+}
+
+bool	debugging(t_coder *coder)
+{
+	if (is_simulation_finished(coder->data))
+		return (false);
+	log_status(coder, "is debugging");
+	if (is_simulation_finished(coder->data))
+		return (false);
+	usleep(coder->data->time_to_debug * 1000);
+	if (is_simulation_finished(coder->data))
+		return (false);
+	return (true);
+}
+
+bool	refactoring(t_coder *coder)
+{
+	if (is_simulation_finished(coder->data))
+		return (false);
+	log_status(coder, "is refactoring");
+	if (is_simulation_finished(coder->data))
+		return (false);
+	usleep(coder->data->time_to_refactor * 1000);
+	if (is_simulation_finished(coder->data))
+		return (false);
+	return (true);
 }

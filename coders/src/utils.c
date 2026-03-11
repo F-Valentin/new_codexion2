@@ -6,7 +6,7 @@
 /*   By: vafechte <vafechte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 14:38:57 by vafechte          #+#    #+#             */
-/*   Updated: 2026/03/11 14:40:51 by vafechte         ###   ########.fr       */
+/*   Updated: 2026/03/11 14:50:37 by vafechte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ void	log_status(t_coder *coder, const char *status)
 {
 	long	timestamp;
 
-	// peut etre race condition
+	// peut etre race condition avec le monitor pour afficher le burnout
 	timestamp = get_time_in_ms() - coder->data->start_time;
 	if (!is_simulation_finished(coder->data))
 	{
 		pthread_mutex_lock(&coder->data->log_mutex);
-		printf("%ld %d %s", timestamp, coder->id, status);
+		printf("%ld %d %s\n", timestamp, coder->id, status);
 		pthread_mutex_unlock(&coder->data->log_mutex);
 	}
 }
