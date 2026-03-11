@@ -6,7 +6,7 @@
 /*   By: vafechte <vafechte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 14:06:30 by vafechte          #+#    #+#             */
-/*   Updated: 2026/03/11 14:38:08 by vafechte         ###   ########.fr       */
+/*   Updated: 2026/03/11 15:10:30 by vafechte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,17 @@
 #include "get_time.h"
 #include "codexion.h"
 #include "monitor.h"
+#include "dongle.h"
 
 static void	*one_coder_simulation(void *arg)
 {
-	(void)arg;
+	t_coder	*coder;
+	t_data	*data;
+
+	coder = (t_coder *)arg;
+	data = coder->data;
+	take_dongle(coder, coder->first_dongle);
+	release_dongle(data, coder->first_dongle);
 	return (NULL);
 }
 

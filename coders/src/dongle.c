@@ -6,7 +6,7 @@
 /*   By: vafechte <vafechte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 14:07:29 by vafechte          #+#    #+#             */
-/*   Updated: 2026/03/11 14:58:32 by vafechte         ###   ########.fr       */
+/*   Updated: 2026/03/11 15:11:05 by vafechte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ bool	take_dongle(t_coder *coder, t_dongle *dongle)
 	return (true);
 }
 
-void	release_dongle(t_dongle *dongle)
+void	release_dongle(t_data *data, t_dongle *dongle)
 {
+	(void)data;
 	pthread_mutex_unlock(&dongle->dongle_mutex);
 }

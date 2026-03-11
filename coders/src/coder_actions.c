@@ -19,6 +19,7 @@ bool	compiling(t_coder *coder)
 	return (true);
 }
 
+// peut etre deadlock trop de verif
 bool	debugging(t_coder *coder)
 {
 	if (is_simulation_finished(coder->data))
@@ -32,6 +33,7 @@ bool	debugging(t_coder *coder)
 	return (true);
 }
 
+// peut etre deadlock trop de verif
 bool	refactoring(t_coder *coder)
 {
 	if (is_simulation_finished(coder->data))
@@ -40,7 +42,5 @@ bool	refactoring(t_coder *coder)
 	if (is_simulation_finished(coder->data))
 		return (false);
 	usleep(coder->data->time_to_refactor * 1000);
-	if (is_simulation_finished(coder->data))
-		return (false);
 	return (true);
 }
