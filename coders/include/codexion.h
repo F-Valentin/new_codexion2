@@ -6,7 +6,7 @@
 /*   By: vafechte <vafechte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 16:50:17 by vafechte          #+#    #+#             */
-/*   Updated: 2026/03/11 15:22:42 by vafechte         ###   ########.fr       */
+/*   Updated: 2026/03/11 15:25:56 by vafechte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,6 @@
 # include <pthread.h>
 # include <stdbool.h>
 # include "heap.h"
-
-# define RED		"\x1b[31m"
-# define GREEN		"\x1b[32m"
-# define YELLOW 	"\x1b[33m"
-# define BLUE		"\x1b[34m"
-# define MAGENTA	"\x1b[35m"
-# define RST		"\x1b[0m"
 
 typedef struct s_data	t_data;
 

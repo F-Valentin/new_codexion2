@@ -6,7 +6,7 @@
 /*   By: vafechte <vafechte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 10:59:28 by vafechte          #+#    #+#             */
-/*   Updated: 2026/03/11 14:52:05 by vafechte         ###   ########.fr       */
+/*   Updated: 2026/03/11 15:41:58 by vafechte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "getters.h"
 #include "get_time.h"
 #include "utils.h"
+#include "color.h"
 
 bool	check_coders_burnout(t_data *data)
 {
@@ -32,7 +33,7 @@ bool	check_coders_burnout(t_data *data)
 			!= data->number_of_compiles_required
 			&& elapsed >= data->time_to_burnout)
 		{
-			log_status(coder, "burnout");
+			log_status(coder, RED"burnout"RST);
 			return (true);
 		}
 		i++;
