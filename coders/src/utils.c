@@ -6,11 +6,11 @@
 /*   By: vafechte <vafechte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 14:38:57 by vafechte          #+#    #+#             */
-/*   Updated: 2026/03/11 14:50:37 by vafechte         ###   ########.fr       */
+/*   Updated: 2026/03/11 14:59:11 by vafechte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "codexion.h"
+#include <stdio.h>
 #include "check_simulation.h"
 #include "get_time.h"
 

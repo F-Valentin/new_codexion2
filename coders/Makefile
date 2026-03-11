@@ -2,7 +2,8 @@ SRC=src/codexion.c src/ft_atol.c\
 	src/dongle_init.c src/coder_init.c src/parsing.c\
 	src/init.c src/time.c src/codexion.c\
 	src/free_data.c src/heap.c src/check_simulation.c\
-	src/getters.c src/monitor.c src/one_coder.c
+	src/getters.c src/monitor.c src/one_coder.c\
+	src/dongle.c src/coder_actions.c src/utils.c
 OBJ=$(SRC:.c=.o)
 CFLAGS=-g3 -Wall -Wextra -Werror -pthread
 NAME=codexion
