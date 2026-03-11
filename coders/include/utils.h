@@ -6,7 +6,7 @@
 /*   By: vafechte <vafechte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 11:11:17 by vafechte          #+#    #+#             */
-/*   Updated: 2026/03/10 11:11:18 by vafechte         ###   ########.fr       */
+/*   Updated: 2026/03/11 14:40:02 by vafechte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,4 +14,5 @@
 # define UTILS_H
 
 long	ft_atol(const char *str);
+void	log_status(t_coder *coder, const char *status);
 #endif
