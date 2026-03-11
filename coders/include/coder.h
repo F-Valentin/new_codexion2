@@ -6,7 +6,7 @@
 /*   By: vafechte <vafechte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 14:38:26 by vafechte          #+#    #+#             */
-/*   Updated: 2026/03/11 15:00:37 by vafechte         ###   ########.fr       */
+/*   Updated: 2026/03/11 15:13:24 by vafechte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,4 +17,5 @@
 # include "codexion.h"
 
 bool	compiling(t_coder *coder);
+void	*one_coder(t_data *data);
 #endif
