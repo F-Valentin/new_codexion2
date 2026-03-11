@@ -6,12 +6,11 @@
 /*   By: vafechte <vafechte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 10:59:28 by vafechte          #+#    #+#             */
-/*   Updated: 2026/03/11 12:23:56 by vafechte         ###   ########.fr       */
+/*   Updated: 2026/03/11 13:17:20 by vafechte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
-#include "codexion.h"
+#include "check_simulation.h"
 #include "getters.h"
 #include "time.h"
 
@@ -33,6 +32,43 @@ bool	check_coders_burnout(t_data *data)
 			&& elapsed >= data->time_to_burnout)
 			return (true);
 		i++;
+	}
+	return (false);
+}
+
+bool	is_simulation_finished(t_data *data)
+{
+	bool	end;
+
+	pthread_mutex_lock(&data->end_mutex);
+	end = data->end_simulation;
+	pthread_mutex_unlock(&data->end_mutex);
+	return (end);
+}
+
+bool	check_all_coders_finished(t_data *data)
+{
+	int		i;
+	int		count;
+	t_coder	*coder;
+
+	i = 0;
+	count = 0;
+	while (i < data->number_of_coders)
+	{
+		coder = &data->coders[i];
+		pthread_mutex_lock(&coder->coder_mutex);
+		if (coder->compilation_count >= data->number_of_compiles_required)
+			count++;
+		pthread_mutex_unlock(&coder->coder_mutex);
+		i++;
+	}
+	if (count >= data->number_of_compiles_required)
+	{
+		pthread_mutex_lock(&data->end_mutex);
+		data->end_simulation = true;
+		pthread_mutex_unlock(&data->end_mutex);
+		return (true);
 	}
 	return (false);
 }

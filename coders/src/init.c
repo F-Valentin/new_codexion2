@@ -6,7 +6,7 @@
 /*   By: vafechte <vafechte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 16:49:46 by vafechte          #+#    #+#             */
-/*   Updated: 2026/03/11 10:42:28 by vafechte         ###   ########.fr       */
+/*   Updated: 2026/03/11 12:48:46 by vafechte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include "coder_init.h"
 #include "dongle_init.h"
 #include "free_data.h"
-#include "time.h"
 
 static bool	monitor_init(t_monitor *monitor)
 {
