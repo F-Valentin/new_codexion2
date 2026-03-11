@@ -6,7 +6,7 @@
 /*   By: vafechte <vafechte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 10:59:39 by vafechte          #+#    #+#             */
-/*   Updated: 2026/03/11 10:59:40 by vafechte         ###   ########.fr       */
+/*   Updated: 2026/03/11 11:09:55 by vafechte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	*monitor(void *arg)
 				break
 			if (check_all_coders_finished())
 				break ;
+			usleep(1000)
 		*/
 	}
 }
