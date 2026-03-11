@@ -6,7 +6,7 @@
 /*   By: vafechte <vafechte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 14:06:30 by vafechte          #+#    #+#             */
-/*   Updated: 2026/03/11 15:10:30 by vafechte         ###   ########.fr       */
+/*   Updated: 2026/03/11 15:23:15 by vafechte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	*one_coder(t_data *data)
 	t_coder	*coder;
 
 	coder = &data->coders[0];
-	// peut etre race condition
 	data->start_time = get_time_in_ms();
 	if (pthread_create(&data->monitor.monitor_id, NULL, monitor, data) != 0)
 	{
@@ -45,7 +44,6 @@ void	*one_coder(t_data *data)
 		fprintf(stderr, "Failed to create one_coder thread.\n");
 		return (NULL);
 	}
-	
 	pthread_join(coder->coder_id, NULL);
 	pthread_join(data->monitor.monitor_id, NULL);
 	return (NULL);
