@@ -6,7 +6,7 @@
 /*   By: vafechte <vafechte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 16:49:46 by vafechte          #+#    #+#             */
-/*   Updated: 2026/03/10 16:52:01 by vafechte         ###   ########.fr       */
+/*   Updated: 2026/03/11 10:42:28 by vafechte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static bool	data_init(t_data *data)
 	}
 	data->start_simulation = false;
 	data->end_simulation = false;
-	data->start_time = get_time_in_ms();
+	data->start_time = 0;
 	return (true);
 }
 
