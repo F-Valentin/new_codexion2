@@ -6,7 +6,7 @@
 /*   By: vafechte <vafechte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 15:23:34 by vafechte          #+#    #+#             */
-/*   Updated: 2026/03/11 17:35:27 by vafechte         ###   ########.fr       */
+/*   Updated: 2026/03/12 14:41:56 by vafechte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,10 @@ bool	compiling(t_coder *coder)
 	if (is_simulation_finished(coder->data))
 		return (false);
 	log_status(coder, "is compiling");
+
 	if (is_simulation_finished(coder->data))
 		return (false);
 	usleep(coder->data->time_to_compile * 1000);
-	pthread_mutex_lock(&coder->coder_mutex);
-	coder->compilation_count++;
-	pthread_mutex_unlock(&coder->coder_mutex);
 	if (is_simulation_finished(coder->data))
 		return (false);
 	return (true);

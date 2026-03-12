@@ -6,7 +6,7 @@
 /*   By: vafechte <vafechte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 14:38:57 by vafechte          #+#    #+#             */
-/*   Updated: 2026/03/12 09:42:41 by vafechte         ###   ########.fr       */
+/*   Updated: 2026/03/12 14:52:24 by vafechte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,15 @@ void	log_status(t_coder *coder, const char *status)
 {
 	long	timestamp;
 
-	pthread_mutex_lock(&coder->data->data_mutex);
-	timestamp = get_time_in_ms() - coder->data->start_time;
-	pthread_mutex_unlock(&coder->data->data_mutex);
+
 	if (!is_simulation_finished(coder->data))
 	{
 		pthread_mutex_lock(&coder->data->log_mutex);
-		printf("%ld %d %s\n", timestamp, coder->id, status);
+		pthread_mutex_lock(&coder->data->data_mutex);
+		timestamp = get_time_in_ms() - coder->data->start_time;
+		pthread_mutex_unlock(&coder->data->data_mutex);
+		if (!is_simulation_finished(coder->data))
+			printf("%ld %d %s\n", timestamp, coder->id, status);
 		pthread_mutex_unlock(&coder->data->log_mutex);
 	}
 }

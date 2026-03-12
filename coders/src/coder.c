@@ -6,7 +6,7 @@
 /*   By: vafechte <vafechte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 16:26:48 by vafechte          #+#    #+#             */
-/*   Updated: 2026/03/11 18:18:23 by vafechte         ###   ########.fr       */
+/*   Updated: 2026/03/12 14:40:10 by vafechte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void	*coder_simulation(void *arg)
 		}
 		release_dongle(coder->data, coder->first_dongle);
 		release_dongle(coder->data, coder->second_dongle);
+		if (!debugging(coder) || !refactoring(coder))
+			break ;
 	}
 	return (NULL);
 }

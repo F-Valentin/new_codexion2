@@ -6,7 +6,7 @@
 /*   By: vafechte <vafechte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 10:59:28 by vafechte          #+#    #+#             */
-/*   Updated: 2026/03/11 18:24:28 by vafechte         ###   ########.fr       */
+/*   Updated: 2026/03/12 14:44:17 by vafechte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ bool	check_coders_burnout(t_data *data)
 		elapsed = get_time_in_ms() - coder->last_compile_start;
 		pthread_mutex_unlock(&coder->coder_mutex);
 		if (get_int(&coder->compilation_count, &coder->coder_mutex)
-			!= data->number_of_compiles_required
+			< data->number_of_compiles_required
 			&& elapsed >= data->time_to_burnout)
 		{
 			log_status(coder, RED"burnout"RST);
