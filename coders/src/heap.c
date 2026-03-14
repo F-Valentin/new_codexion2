@@ -19,12 +19,12 @@ bool	heap_insert(t_heap *heap, int coder_id, long priority)
 	int			parent;
 	t_heap_node	temp;
 
-	if (heap->size >= heap->capacity - 1)
-		return (false);
 	i = heap->size;
+	heap->size++;
+	if (heap->size >= heap->capacity)
+		return (heap->size--, false);
 	heap->nodes[i].coder_id = coder_id;
 	heap->nodes[i].priority = priority;
-	heap->size++;
 	while (i != 0)
 	{
 		parent = (i - 1) / 2;
@@ -78,7 +78,7 @@ int	heap_extract_min(t_heap *heap)
 	return (coder_id);
 }
 
-int	heap_peak_min(t_heap *heap)
+int	heap_peek_min(t_heap *heap)
 {
 	return (heap->nodes[0].coder_id);
 }

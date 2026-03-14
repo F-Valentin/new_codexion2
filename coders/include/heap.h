@@ -30,5 +30,5 @@ typedef struct s_heap
 
 bool	heap_insert(t_heap *heap, int coder_id, long priority);
 int		heap_extract_min(t_heap *heap);
-int		heap_peak_min(t_heap *heap);
+int		heap_peek_min(t_heap *heap);
 #endif

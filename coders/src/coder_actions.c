@@ -18,7 +18,6 @@
 #include "utils.h"
 #include "unistd.h"
 
-// peut etre deadlock trop de verif
 bool	compiling(t_coder *coder)
 {
 	pthread_mutex_lock(&coder->coder_mutex);
@@ -27,14 +26,11 @@ bool	compiling(t_coder *coder)
 		pthread_mutex_unlock(&coder->coder_mutex);
 		return (false);
 	}
-	pthread_mutex_unlock(&coder->coder_mutex);
-	pthread_mutex_lock(&coder->coder_mutex);
 	coder->last_compile_start = get_time_in_ms();
 	pthread_mutex_unlock(&coder->coder_mutex);
 	if (is_simulation_finished(coder->data))
 		return (false);
 	log_status(coder, "is compiling");
-
 	if (is_simulation_finished(coder->data))
 		return (false);
 	usleep(coder->data->time_to_compile * 1000);
@@ -43,7 +39,6 @@ bool	compiling(t_coder *coder)
 	return (true);
 }
 
-// peut etre deadlock trop de verif
 bool	debugging(t_coder *coder)
 {
 	if (is_simulation_finished(coder->data))
@@ -57,7 +52,6 @@ bool	debugging(t_coder *coder)
 	return (true);
 }
 
-// peut etre deadlock trop de verif
 bool	refactoring(t_coder *coder)
 {
 	if (is_simulation_finished(coder->data))

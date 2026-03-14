@@ -17,5 +17,5 @@
 # include "codexion.h"
 
 bool	take_dongle(t_coder *coder, t_dongle *dongle);
-void	release_dongle(t_data *data, t_dongle *dongle);
+void	release_dongle(t_coder *coder, t_dongle *dongle);
 #endif

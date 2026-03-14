@@ -12,6 +12,7 @@
 
 #include <unistd.h>
 #include "check_simulation.h"
+#include "utils.h"
 
 void	*monitor(void *arg)
 {
@@ -22,7 +23,7 @@ void	*monitor(void *arg)
 	{
 		if (is_simulation_finished(data))
 		{
-			// wake up all coder
+			wake_up_all_coders(data->coders, data->number_of_coders);
 			break ;
 		}
 		if (check_all_coders_finished(data))

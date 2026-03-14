@@ -19,12 +19,10 @@
 static void	*one_coder_simulation(void *arg)
 {
 	t_coder	*coder;
-	t_data	*data;
 
 	coder = (t_coder *)arg;
-	data = coder->data;
 	take_dongle(coder, coder->first_dongle);
-	release_dongle(data, coder->first_dongle);
+	pthread_mutex_unlock(&coder->first_dongle->dongle_mutex);
 	return (NULL);
 }
 

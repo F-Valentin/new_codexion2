@@ -30,3 +30,17 @@ void	log_status(t_coder *coder, const char *status)
 		pthread_mutex_unlock(&coder->data->log_mutex);
 	}
 }
+
+void	wake_up_all_coders(t_coder *coders, int size)
+{
+	int	i;
+
+	i = 0;
+	while (i < size)
+	{
+		pthread_mutex_lock(&coders[i].coder_waiting);
+		pthread_cond_broadcast(&coders[i].coder_cond);
+		pthread_mutex_unlock(&coders[i].coder_waiting);
+		i++;
+	}
+}

@@ -6,7 +6,7 @@ SRC=src/codexion.c src/ft_atol.c\
 	src/dongle.c src/coder_actions.c src/utils.c\
 	src/coder.c
 OBJ=$(SRC:.c=.o)
-CFLAGS=-g3 -Wall -Wextra -Werror -pthread
+CFLAGS= -g3 -Wall -Wextra -pthread
 NAME=codexion
 
 all: $(NAME)

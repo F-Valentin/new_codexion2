@@ -17,4 +17,5 @@
 
 long	ft_atol(const char *str);
 void	log_status(t_coder *coder, const char *status);
+void	wake_up_all_coders(t_coder *coders, int size);
 #endif

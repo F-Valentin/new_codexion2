@@ -41,17 +41,17 @@ void	*coder_simulation(void *arg)
 			break ;
 		if (!take_dongle(coder, coder->second_dongle))
 		{
-			release_dongle(coder->data, coder->first_dongle);
+			release_dongle(coder, coder->first_dongle);
 			break ;
 		}
 		if (!compiling(coder))
 		{
-			release_dongle(coder->data, coder->first_dongle);
-			release_dongle(coder->data, coder->second_dongle);
+			release_dongle(coder, coder->first_dongle);
+			release_dongle(coder, coder->second_dongle);
 			break ;
 		}
-		release_dongle(coder->data, coder->first_dongle);
-		release_dongle(coder->data, coder->second_dongle);
+		release_dongle(coder, coder->first_dongle);
+		release_dongle(coder, coder->second_dongle);
 		if (!debugging(coder) || !refactoring(coder))
 			break ;
 	}

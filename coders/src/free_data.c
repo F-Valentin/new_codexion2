@@ -46,6 +46,8 @@ void	free_coder(t_coder *coders, int size)
 		coder = &coders[i];
 		if (pthread_mutex_destroy(&coder->coder_mutex) != 0)
 			fprintf(stderr, "Failed to destroy the %d coder's mutex.\n", i);
+		if (pthread_mutex_destroy(&coder->coder_waiting) != 0)
+			fprintf(stderr, "Failed to destroy the %d coder's waiting mutex.\n", i);
 		if (pthread_cond_destroy(&coder->coder_cond) != 0)
 			fprintf(stderr, "Failed to destroy the %d coder's cond.\n", i);
 		i++;
