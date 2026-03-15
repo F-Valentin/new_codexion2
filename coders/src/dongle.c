@@ -76,6 +76,8 @@ bool	take_dongle(t_coder *coder, t_dongle *dongle)
 	if (!coder_waiting(coder, dongle))
 		return (false);
 	heap_extract_min(&dongle->waiting_queue);
+	if (is_simulation_finished(coder->data))
+		return ((void)pthread_mutex_unlock(&dongle->dongle_mutex), false);
 	log_status(coder, "has taken a dongle");
 	return (true);
 }
