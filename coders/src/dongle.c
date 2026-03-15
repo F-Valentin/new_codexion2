@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include "dongle.h"
 #include "utils.h"
 #include "check_simulation.h"
@@ -26,6 +27,19 @@ static long	get_priority(t_coder *coder)
 	edf = coder->last_compile_start + coder->data->time_to_burnout;
 	pthread_mutex_unlock(&coder->coder_mutex);
 	return (edf);
+}
+
+static bool	wait_dongle(t_coder *coder, t_dongle *dongle)
+{
+	if (is_simulation_finished(coder->data))
+		return (false);
+	while (get_time_in_ms() < dongle->available_at)
+	{
+		if (is_simulation_finished(coder->data))
+			return (false);
+		usleep(100);
+	}
+	return (true);
 }
 
 static bool	coder_waiting(t_coder *coder, t_dongle *dongle)
@@ -45,7 +59,8 @@ static bool	coder_waiting(t_coder *coder, t_dongle *dongle)
 			break ;
 		pthread_mutex_unlock(&dongle->dongle_mutex);
 		pthread_cond_wait(&coder->coder_cond, &coder->coder_waiting);
-		// wait dongle
+		if (!wait_dongle(coder, dongle))
+			return (false);
 		pthread_mutex_lock(&dongle->dongle_mutex);
 	}
 	pthread_mutex_unlock(&coder->coder_waiting);
@@ -54,7 +69,6 @@ static bool	coder_waiting(t_coder *coder, t_dongle *dongle)
 
 bool	take_dongle(t_coder *coder, t_dongle *dongle)
 {
-
 	if (is_simulation_finished(coder->data))
 		return (false);
 	pthread_mutex_lock(&dongle->dongle_mutex);
@@ -71,6 +85,7 @@ void	release_dongle(t_coder *coder, t_dongle *dongle)
 	t_data	*data;
 
 	data = coder->data;
+	dongle->available_at = get_time_in_ms() + data->dongle_cooldown;
 	pthread_mutex_unlock(&dongle->dongle_mutex);
 	wake_up_all_coders(data->coders, data->number_of_coders);
 }

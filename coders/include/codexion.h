@@ -28,7 +28,7 @@ typedef enum e_scheduler
 typedef struct s_dongle
 {
 	int				dongle_id;
-	long			available_at;
+	_Atomic long	available_at;
 	t_heap			waiting_queue;
 	pthread_mutex_t	dongle_mutex;
 	pthread_cond_t	dongle_cond;
