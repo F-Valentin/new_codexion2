@@ -19,7 +19,6 @@ void	set_long(long *v, long s, pthread_mutex_t *mutex)
 	pthread_mutex_unlock(mutex);
 }
 
-
 void	set_int(int *v, int s, pthread_mutex_t *mutex)
 {
 	pthread_mutex_lock(mutex);

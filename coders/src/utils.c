@@ -18,7 +18,6 @@ void	log_status(t_coder *coder, const char *status)
 {
 	long	timestamp;
 
-
 	if (!is_simulation_finished(coder->data))
 	{
 		pthread_mutex_lock(&coder->data->log_mutex);

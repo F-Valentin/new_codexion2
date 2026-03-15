@@ -74,9 +74,6 @@ bool	check_all_coders_finished(t_data *data)
 		pthread_mutex_lock(&data->end_mutex);
 		data->end_simulation = true;
 		pthread_mutex_unlock(&data->end_mutex);
-		pthread_mutex_lock(&data->log_mutex);
-		printf(GREEN"finished\n"RST);
-		pthread_mutex_unlock(&data->log_mutex);
 		return (true);
 	}
 	return (false);

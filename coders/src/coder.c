@@ -18,6 +18,8 @@
 
 static bool	is_coder_finished(t_coder *coder)
 {
+	if (is_simulation_finished(coder->data))
+		return (true);
 	pthread_mutex_lock(&coder->coder_mutex);
 	if (coder->compilation_count >= coder->data->number_of_compiles_required)
 	{
@@ -35,8 +37,6 @@ void	*coder_simulation(void *arg)
 	coder = (t_coder *)arg;
 	while (!is_coder_finished(coder))
 	{
-		if (is_simulation_finished(coder->data))
-			break ;
 		if (!take_dongle(coder, coder->first_dongle))
 			break ;
 		if (!take_dongle(coder, coder->second_dongle))
