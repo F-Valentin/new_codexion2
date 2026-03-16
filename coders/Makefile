@@ -1,3 +1,4 @@
+CC=gcc
 SRC=src/codexion.c src/ft_atol.c\
 	src/dongle_init.c src/coder_init.c src/parsing.c\
 	src/init.c src/time.c src/codexion.c\
@@ -12,10 +13,10 @@ NAME=codexion
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	gcc -o $@ $^ -I include/
+	$(CC) -o $@ $^ -I include/
 
 %.o: %.c
-	gcc -o $@ -c $< $(CFLAGS) -I include/
+	$(CC) -o $@ -c $< $(CFLAGS) -I include/
 
 clean:
 	rm -rf src/*.o

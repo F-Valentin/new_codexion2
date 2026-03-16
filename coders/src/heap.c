@@ -6,7 +6,7 @@
 /*   By: vafechte <vafechte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 16:49:44 by vafechte          #+#    #+#             */
-/*   Updated: 2026/03/12 17:16:00 by vafechte         ###   ########.fr       */
+/*   Updated: 2026/03/16 11:40:42 by vafechte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ bool	heap_insert(t_heap *heap, int coder_id, long priority)
 
 	i = heap->size;
 	heap->size++;
-	if (heap->size >= heap->capacity)
+	if (heap->size > heap->capacity)
 		return (heap->size--, false);
 	heap->nodes[i].coder_id = coder_id;
 	heap->nodes[i].priority = priority;
