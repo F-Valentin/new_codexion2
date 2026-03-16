@@ -6,7 +6,7 @@
 /*   By: vafechte <vafechte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 14:07:29 by vafechte          #+#    #+#             */
-/*   Updated: 2026/03/11 18:11:53 by vafechte         ###   ########.fr       */
+/*   Updated: 2026/03/16 12:44:27 by vafechte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static bool	wait_dongle(t_coder *coder, t_dongle *dongle)
 			return (false);
 		usleep(100);
 	}
+	dongle->available_at = 0;
 	return (true);
 }
 
@@ -46,24 +47,19 @@ static bool	coder_waiting(t_coder *coder, t_dongle *dongle)
 {
 	int	coder_id;
 
-	pthread_mutex_lock(&coder->coder_waiting);
 	while (true)
 	{
 		if (is_simulation_finished(coder->data))
 		{
 			pthread_mutex_unlock(&dongle->dongle_mutex);
-			return ((void)pthread_mutex_unlock(&coder->coder_waiting), false);
+			return (false);
 		}
 		coder_id = heap_peek_min(&dongle->waiting_queue);
 		if (coder_id == coder->id)
 			break ;
-		pthread_mutex_unlock(&dongle->dongle_mutex);
-		pthread_cond_wait(&coder->coder_cond, &coder->coder_waiting);
-		if (!wait_dongle(coder, dongle))
-			return (false);
-		pthread_mutex_lock(&dongle->dongle_mutex);
+		pthread_cond_wait(&dongle->dongle_cond, &dongle->dongle_mutex);
 	}
-	pthread_mutex_unlock(&coder->coder_waiting);
+	heap_extract_min(&dongle->waiting_queue);
 	return (true);
 }
 
@@ -75,7 +71,8 @@ bool	take_dongle(t_coder *coder, t_dongle *dongle)
 	heap_insert(&dongle->waiting_queue, coder->id, get_priority(coder));
 	if (!coder_waiting(coder, dongle))
 		return (false);
-	heap_extract_min(&dongle->waiting_queue);
+	if (!wait_dongle(coder, dongle))
+		return ((void)pthread_mutex_unlock(&dongle->dongle_mutex), false);
 	if (is_simulation_finished(coder->data))
 		return ((void)pthread_mutex_unlock(&dongle->dongle_mutex), false);
 	log_status(coder, "has taken a dongle");
@@ -88,6 +85,6 @@ void	release_dongle(t_coder *coder, t_dongle *dongle)
 
 	data = coder->data;
 	dongle->available_at = get_time_in_ms() + data->dongle_cooldown;
+	pthread_cond_broadcast(&dongle->dongle_cond);
 	pthread_mutex_unlock(&dongle->dongle_mutex);
-	wake_up_all_coders(data->coders, data->number_of_coders);
 }

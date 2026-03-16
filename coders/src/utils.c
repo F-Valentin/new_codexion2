@@ -6,7 +6,7 @@
 /*   By: vafechte <vafechte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 14:38:57 by vafechte          #+#    #+#             */
-/*   Updated: 2026/03/12 14:52:24 by vafechte         ###   ########.fr       */
+/*   Updated: 2026/03/16 12:31:58 by vafechte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,16 @@ void	log_status(t_coder *coder, const char *status)
 	}
 }
 
-void	wake_up_all_coders(t_coder *coders, int size)
+void	wake_up_all_coders(t_dongle *dongles, int size)
 {
 	int	i;
 
 	i = 0;
 	while (i < size)
 	{
-		pthread_mutex_lock(&coders[i].coder_waiting);
-		pthread_cond_broadcast(&coders[i].coder_cond);
-		pthread_mutex_unlock(&coders[i].coder_waiting);
+		pthread_mutex_lock(&dongles[i].dongle_mutex);
+		pthread_cond_broadcast(&dongles[i].dongle_cond);
+		pthread_mutex_unlock(&dongles[i].dongle_mutex);
 		i++;
 	}
 }

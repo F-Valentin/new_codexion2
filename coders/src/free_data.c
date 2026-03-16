@@ -6,7 +6,7 @@
 /*   By: vafechte <vafechte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 16:49:35 by vafechte          #+#    #+#             */
-/*   Updated: 2026/03/10 16:23:15 by vafechte         ###   ########.fr       */
+/*   Updated: 2026/03/16 12:40:27 by vafechte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,6 @@ void	free_coder(t_coder *coders, int size)
 		coder = &coders[i];
 		if (pthread_mutex_destroy(&coder->coder_mutex) != 0)
 			fprintf(stderr, "Failed to destroy the %d coder's mutex.\n", i);
-		if (pthread_mutex_destroy(&coder->coder_waiting) != 0)
-			fprintf(
-				stderr, "Failed to destroy the %d coder's waiting mutex.\n", i);
 		if (pthread_cond_destroy(&coder->coder_cond) != 0)
 			fprintf(stderr, "Failed to destroy the %d coder's cond.\n", i);
 		i++;

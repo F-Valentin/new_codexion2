@@ -6,7 +6,7 @@
 /*   By: vafechte <vafechte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 16:50:17 by vafechte          #+#    #+#             */
-/*   Updated: 2026/03/11 15:25:56 by vafechte         ###   ########.fr       */
+/*   Updated: 2026/03/16 12:45:57 by vafechte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef enum e_scheduler
 typedef struct s_dongle
 {
 	int				dongle_id;
-	_Atomic long	available_at;
+	long			available_at;
 	t_heap			waiting_queue;
 	pthread_mutex_t	dongle_mutex;
 	pthread_cond_t	dongle_cond;

@@ -6,7 +6,7 @@
 /*   By: vafechte <vafechte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 10:59:39 by vafechte          #+#    #+#             */
-/*   Updated: 2026/03/11 14:07:19 by vafechte         ###   ########.fr       */
+/*   Updated: 2026/03/16 12:29:48 by vafechte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	*monitor(void *arg)
 	{
 		if (is_simulation_finished(data))
 		{
-			wake_up_all_coders(data->coders, data->number_of_coders);
+			wake_up_all_coders(data->dongles, data->number_of_coders);
 			break ;
 		}
 		if (check_all_coders_finished(data))
